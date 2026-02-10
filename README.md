@@ -14,5 +14,8 @@
 - Smoke/Regression/UX-тестирование
 
 ## Применяемые инструменты
--  DevTools
+- DevTools
 - Postman 
+
+## Список протестированных веб-приложений
+- [Stepik](./stepik-web/readme.md)
