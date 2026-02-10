@@ -1,5 +1,4 @@
 # Список тест-кейсов для [Stepik](https://stepik.org/catalog)
-![GitHub Created At](https://img.shields.io/github/created-at/FantasmaDux/QA-Learning?color=bright-green&style=flat-square)
 
 Содержит тест-кейсы для проверки веб-приложения Stepik в двух браузерах:
 - Chrome версия: 144.0.7559.133 (официальная сборка) (64 бит)

@@ -1,6 +1,7 @@
 # Тестирование веб-приложения [Stepik](https://stepik.org/catalog)
-![GitHub Created At](https://img.shields.io/github/created-at/FantasmaDux/QA-Learning?color=bright-green&style=flat-square)
-![Docker](https://img.shields.io/badge/docker-✓-blue?style=flat-square)
+![Chrome DevTools](https://img.shields.io/badge/Chrome-DevTools-4285F4?logo=googlechrome&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-API%20Testing-FF6C37?logo=postman&logoColor=white)
+![JSON](https://img.shields.io/badge/JSON-Data-informational)
 
 Содержит тест-кейсы для проверки веб-приложения Stepik в двух браузерах:
 - Chrome версия: 144.0.7559.133 (официальная сборка) (64 бит)
@@ -38,7 +39,7 @@
 
 | Статус | Модуль | Приоритет | Ссылка на чек-лист | Объем (количество тест-кейсов) |
 |--------|--------|-----------|---------------------|-------|
-| <span style="color:green">ГОТОВО</span> | Авторизация | Высокий | [Авторизация](./check-lists.md)  | 3 |
+| <span style="color:green">ГОТОВО</span> | Регистрация | Высокий | [Регистрация](./check-lists.md)  | 3 |
 | <span style="color:green">ГОТОВО</span> | Логин | Высокий | [Логин](./check-lists.md) | 3 |
 | <span style="color:red">НЕ ГОТОВО</span> | Главная страница | Высокий | [Главная страница](./check-lists.md) | 0 |
 | <span style="color:red">НЕ ГОТОВО</span> | Профиль | Высокий | [Профиль](./check-lists.md) | 0 |
