@@ -1,0 +1,394 @@
+{
+  "info": {
+    "_postman_id": "aefe0b93-eb7e-4b2a-91dd-9f2c23391951",
+    "name": "Stepik",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47800322",
+    "_collection_link": "https://go.postman.co/collection/47800322-aefe0b93-eb7e-4b2a-91dd-9f2c23391951?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Incorrect password code 401",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const token = pm.collectionVariables.get('csrf_token');\r",
+                  "if (token) {\r",
+                  "    pm.request.headers.upsert({\r",
+                  "        key: 'X-CSRFToken',\r",
+                  "        value: token\r",
+                  "    });\r",
+                  "    console.log('CSRF токен добавлен в заголовок');\r",
+                  "} else {\r",
+                  "    console.log('CSRF токен не найден. Выполните сначала GET-запрос к главной странице');\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://stepik.org",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"existingEmail@mail.ru\",\r\n    \"password\": \"wrongPassword\"\r\n \r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Correct login code 200",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const token = pm.collectionVariables.get('csrf_token');\r",
+                  "if (token) {\r",
+                  "    pm.request.headers.upsert({\r",
+                  "        key: 'X-CSRFToken',\r",
+                  "        value: token\r",
+                  "    });\r",
+                  "    console.log('CSRF токен добавлен в заголовок');\r",
+                  "} else {\r",
+                  "    console.log('CSRF токен не найден. Выполните сначала GET-запрос к главной странице');\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const newCsrfToken = pm.cookies.get('csrftoken');\r",
+                  "if (newCsrfToken) {\r",
+                  "    pm.collectionVariables.set('temp_csrf_token', newCsrfToken);\r",
+                  "    console.log('Токен после логина:', newCsrfToken);\r",
+                  "} else {\r",
+                  "    console.log('Токен не получен после логина');\r",
+                  "}\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://stepik.org",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"f123@mail.ru\",\r\n    \"password\": \"1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Register",
+      "item": [
+        {
+          "name": "Correct register code 201",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "\r",
+                  "const token = pm.collectionVariables.get('csrf_token');\r",
+                  "if (token) {\r",
+                  "    pm.request.headers.upsert({\r",
+                  "        key: 'X-CSRFToken',\r",
+                  "        value: token\r",
+                  "    });\r",
+                  "    console.log('CSRF токен добавлен в заголовок');\r",
+                  "} else {\r",
+                  "    console.log('CSRF токен не найден. Выполните сначала GET-запрос к главной странице');\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const newCsrfToken = pm.cookies.get('csrftoken');\r",
+                  "if (newCsrfToken) {\r",
+                  "    pm.collectionVariables.set('temp_csrf_token', newCsrfToken);\r",
+                  "    console.log('Токен после логина:', newCsrfToken);\r",
+                  "} else {\r",
+                  "    console.log('Токен не получен после логина');\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://stepik.org/catalog?auth=registration",
+                "type": "text"
+              },
+              {
+                "key": "Origin",
+                "value": "https://stepik.org",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user\": {\r\n        \"email\": \"f123@mail.ru\",\r\n        \"password\": \"1234\",\r\n        \"subscribed_for_marketing\": true\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Delete account code 302",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const token = pm.collectionVariables.get('temp_csrf_token');\r",
+                  "if (token) {\r",
+                  "    pm.request.headers.upsert({\r",
+                  "        key: 'X-CSRFToken',\r",
+                  "        value: token\r",
+                  "    });\r",
+                  "    \r",
+                  "    const requestBody = pm.request.body.raw;\r",
+                  "    if (requestBody && requestBody.includes('{{temp_csrf_token}}')) {\r",
+                  "        pm.request.body.raw = requestBody.replace(\r",
+                  "            '{{temp_csrf_token}}', \r",
+                  "            token\r",
+                  "        );\r",
+                  "    }\r",
+                  "} else {\r",
+                  "    console.log('Токен не найден. Сначала выполните вход');\r",
+                  "}\r",
+                  "\r",
+                  "pm.request.headers.upsert({\r",
+                  "    key: 'Accept',\r",
+                  "    value: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://stepik.org",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "csrfmiddlewaretoken",
+                  "value": "{{temp_csrf_token}}",
+                  "type": "text",
+                  "uuid": "cbb30254-67fe-43d3-9ac2-b2681e272974"
+                },
+                {
+                  "key": "password",
+                  "value": "1234",
+                  "type": "text",
+                  "uuid": "1703dfe8-3ec4-4476-998d-4f29763741e4"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/users/delete-account/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "delete-account",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get site code 200",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const csrfToken = pm.cookies.get('csrftoken');\r",
+              "if (csrfToken) {\r",
+              "    pm.collectionVariables.set('csrf_token', csrfToken);\r",
+              "    console.log('CSRF токен сохранён:', csrfToken);\r",
+              "} else {\r",
+              "    console.log('CSRF токен не найден в cookies');\r",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}",
+          "host": [
+            "{{base_url}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "csrf_token",
+      "value": ""
+    },
+    {
+      "key": "base_url",
+      "value": ""
+    },
+    {
+      "key": "temp_csrf_token",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
