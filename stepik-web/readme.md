@@ -42,8 +42,6 @@
 |--------|--------|-----------|---------------------|-------|
 | <span style="color:green">ГОТОВО</span> | Регистрация | Высокий | [Регистрация](./check-lists.md)  | 3 |
 | <span style="color:green">ГОТОВО</span> | Логин | Высокий | [Логин](./check-lists.md) | 3 |
-| <span style="color:red">НЕ ГОТОВО</span> | Главная страница | Высокий | [Главная страница](./check-lists.md) | 0 |
-| <span style="color:red">НЕ ГОТОВО</span> | Профиль | Высокий | [Профиль](./check-lists.md) | 0 |
-| <span style="color:red">НЕ ГОТОВО</span> | Поисковая система | Средний | [Поисковая система](./check-lists.md) | 0 |
-| <span style="color:red">НЕ ГОТОВО</span> | Работа с курсами | Высокий | [Работа с курсами](./check-lists.md) | 0 |
-
+| <span style="color:red">ГОТОВО</span> | Главная страница | Высокий | [Главная страница](./check-lists.md) | 1 |
+| <span style="color:red">ГОТОВО</span> | Профиль | Высокий | [Профиль](./check-lists.md) | 1 |
+| <span style="color:red">ГОТОВО</span> | Поисковая система | Средний | [Поисковая система](./check-lists.md) | 1 |
