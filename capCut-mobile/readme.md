@@ -1,8 +1,6 @@
 # Тестирование мобильного приложения [CapCut: Photo & Video Editor](https://play.google.com/store/apps/details?id=com.lemon.lvoverseas&hl=ru&pli=1)
-
 ![Postman](https://img.shields.io/badge/Postman-API%20Testing-FF6C37?logo=postman&logoColor=white)
 ![JSON](https://img.shields.io/badge/JSON-Data-informational)
-![Charles](https://img.shields.io/badge/Charles_Proxy-Running-brightgreen)
 
 Содержит тест-кейсы для проверки мобильного приложения CapCut: Photo & Video Editor на устройствах:
 - TECNO SPARK 40C, Android 15 
@@ -16,7 +14,7 @@
 ## Ключевые слова и технологии
 - Мобильное приложение
 - Postman
-- Charles Proxy
+
 
 ## Тест-план
 

@@ -2,6 +2,7 @@
 ![Chrome DevTools](https://img.shields.io/badge/Chrome-DevTools-4285F4?logo=googlechrome&logoColor=white)
 ![Postman](https://img.shields.io/badge/Postman-API%20Testing-FF6C37?logo=postman&logoColor=white)
 ![JSON](https://img.shields.io/badge/JSON-Data-informational)
+![Charles](https://img.shields.io/badge/Charles_Proxy-Running-brightgreen)
 
 Содержит тест-кейсы для проверки веб-приложения Stepik в двух браузерах:
 - Chrome версия: 144.0.7559.133 (официальная сборка) (64 бит)
@@ -17,6 +18,7 @@
 - Веб-приложение
 - DevTools
 - Postman
+- Charles Proxy
 
 ## Тест-план
 
@@ -42,6 +44,6 @@
 |--------|--------|-----------|---------------------|-------|
 | <span style="color:green">ГОТОВО</span> | Регистрация | Высокий | [Регистрация](./check-lists.md)  | 3 |
 | <span style="color:green">ГОТОВО</span> | Логин | Высокий | [Логин](./check-lists.md) | 3 |
-| <span style="color:red">ГОТОВО</span> | Главная страница | Высокий | [Главная страница](./check-lists.md) | 1 |
+| <span style="color:red">ГОТОВО</span> | Главная страница | Высокий | [Главная страница](./check-lists.md) | 2 |
 | <span style="color:red">ГОТОВО</span> | Профиль | Высокий | [Профиль](./check-lists.md) | 1 |
 | <span style="color:red">ГОТОВО</span> | Поисковая система | Средний | [Поисковая система](./check-lists.md) | 1 |
