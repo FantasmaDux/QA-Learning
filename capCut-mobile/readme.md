@@ -3,7 +3,9 @@
 ![JSON](https://img.shields.io/badge/JSON-Data-informational)
 
 Содержит тест-кейсы для проверки мобильного приложения CapCut: Photo & Video Editor на устройствах:
-- TECNO SPARK 40C, Android 15 
+- Apple iPhone 11 (одно из самых используемых устройств 2025 на apple ОС)
+- Tecno Spark 40C (физическое устройство)
+- Huawei Nova Y73 (одно из самых используемых устройств 2025, Huawei известны нестандартным поведением приложений)
 
 Ссылка на сайт приложения: https://www.capcut.com/ru-by/tools/video-editor-download 
 
