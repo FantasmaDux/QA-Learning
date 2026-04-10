@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.joom'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+/*
+
+implementation - всегда, если библиотека нужна во время работы программы
+               - библиотека есть и при компиляции, и при запуске
+
+
+compileOnly - только при компиляции, во время работы не нужна
+            - библиотека есть только когда код собирается
+
+annotationProcessor - только для обработки аннотаций (Lombok, Dagger, MapStruct)
+                    - запускает генерацию кода, сама библиотека в программу не попадает
+
+ */
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.30'
+
+    // клиент для аппиум, позволяет взаимодействовать с мобильным приложением через
+    // аппиум сервер
+    implementation 'io.appium:java-client:8.5.1'
+
+    // для работы с UI
+    implementation 'org.seleniumhq.selenium:selenium-java:4.17.0'
+
+    // для логов
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
+
+    // для проверки ожидаемых результатов
+    implementation 'org.assertj:assertj-core:3.25.3'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+}
+
+test {
+    useJUnitPlatform()
+    // Стандартная настройка для запуска тестов JUnit
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        showStandardStreams = true
+    }
+
+    // Для защиты от конфликтов версий
+    configurations.configureEach {
+        resolutionStrategy.eachDependency {DependencyResolveDetails details ->
+            if (details.requested.group == 'org.slf4j') {
+                details.useVersion '1.7.32'
+            }
+        }
+    }
+}
