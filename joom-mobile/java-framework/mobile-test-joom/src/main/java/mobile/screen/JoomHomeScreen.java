@@ -44,8 +44,21 @@ public class JoomHomeScreen extends BaseScreen {
         int yCoordinates = 1649;
 
         tapByCoordinates(xCoordinates, yCoordinates);
+        tapByCoordinates(xCoordinates, yCoordinates);
         log.info("Country chosen");
 
         return new JoomHomeScreen(driver);
     }
+
+    @AndroidFindBy(xpath = JoomHomeLocator.PROFILE_BUTTON_XPATH)
+    private WebElement profileButton;
+
+
+    public ProfileScreen openLoginScreen() {
+        waitUntilElementIsVisible(profileButton);
+        profileButton.click();
+        log.info("Opened login screen");
+        return new ProfileScreen(driver);
+    }
+
 }

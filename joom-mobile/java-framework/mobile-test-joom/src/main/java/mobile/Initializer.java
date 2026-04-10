@@ -20,7 +20,7 @@ public class Initializer {
     static {
         try (InputStream input = Initializer.class
                 .getClassLoader()
-                .getResourceAsStream("/config.properties")) {
+                .getResourceAsStream("config.properties")) {
             if (input == null) {
                 log.error("Unable to find config.properties");
             }

@@ -23,16 +23,6 @@ public class ProfileScreen extends BaseScreen {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @AndroidFindBy(xpath = JoomHomeLocator.PROFILE_BUTTON_XPATH)
-    private WebElement profileButton;
-
-    public ProfileScreen openLoginScreen() {
-        waitUntilElementIsVisible(profileButton);
-        profileButton.click();
-        log.info("Opened login screen");
-        return new ProfileScreen(driver);
-    }
-
     public void verifyLoginScreenOpened(LoginTitle loginTitle) {
         assertThat(Helper.isTextOnScreen(loginTitle.getValue()))
                 .as("Check if the text '%s' is visible on screen", loginTitle.getValue())
