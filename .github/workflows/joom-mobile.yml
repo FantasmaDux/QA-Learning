@@ -10,7 +10,7 @@ on:
 jobs:
   android-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - uses: actions/checkout@v4
@@ -27,32 +27,47 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x joom-mobile/java-framework/mobile-test-joom/gradlew
 
-      - name: Set up Node.js (for Appium)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Run tests with emulator and Appium
+      - name: Run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           target: google_apis
           arch: x86_64
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-audio
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-audio -no-boot-anim -verbose
+          force-avd-creation: true
           script: |
-            echo "Emulator is ready!"
+            echo "========================================="
+            echo "Waiting for emulator to fully boot..."
+            echo "This may take 3-5 minutes"
+            echo "========================================="
             
-            # Устанавливаем Appium (уже есть Node.js)
+            # Ждём появления устройства
+            timeout 300 adb wait-for-device || echo "Device not found after 300 seconds"
+            
+            # Ждём завершения загрузки
+            adb shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 5; done;'
+            
+            echo "========================================="
+            echo "Emulator boot completed!"
+            echo "========================================="
+            
+            # Дополнительная задержка
+            sleep 15
+            
+            # Установка Node.js и Appium
+            echo "Installing Node.js..."
+            curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            
+            echo "Installing Appium..."
             npm install -g appium@next
             appium driver install uiautomator2
             
-            # Запускаем Appium в фоне
-            appium &
+            echo "Starting Appium..."
+            appium --log /tmp/appium.log &
+            sleep 20
             
-            # Ждём Appium
-            sleep 15
-            
-            # Запускаем тесты
+            echo "Running tests..."
             cd joom-mobile/java-framework/mobile-test-joom
             ./gradlew test
