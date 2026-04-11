@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.extern.slf4j.Slf4j;
 import mobile.enums.LoginTitle;
 import mobile.helper.Helper;
-import mobile.locator.JoomHomeLocator;
+import mobile.locator.LoginLocator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -29,5 +29,36 @@ public class ProfileScreen extends BaseScreen {
                 .isTrue();
 
         log.info("Verify '{}' text is visible", loginTitle.getValue());
+    }
+
+    @AndroidFindBy(xpath = LoginLocator.LOGIN_BUTTON_XPATH)
+    private WebElement registrationButton;
+
+    public ProfileScreen openRegistrationForm() {
+        waitUntilElementIsVisible(registrationButton);
+        registrationButton.click();
+        log.info("Open registration form");
+        return this;
+    }
+
+    @AndroidFindBy(xpath = LoginLocator.MORE_OPTIONS_BUTTON_XPATH)
+    private WebElement moreOptionsButton;
+
+    public void showMoreOptionsButton() {
+        waitUntilElementIsVisible(moreOptionsButton);
+        moreOptionsButton.click();
+        log.info("Open more options");
+    }
+
+    @AndroidFindBy(xpath = LoginLocator.LOGIN_WITH_EMAIL_BUTTON_XPATH)
+    private WebElement signUpWithEmailButton;
+
+    public SignUpPopUpScreen signUpWithEmail() {
+        showMoreOptionsButton();
+
+        waitUntilElementIsVisible(signUpWithEmailButton);
+        signUpWithEmailButton.click();
+        log.info("Sign up with email");
+        return new SignUpPopUpScreen(driver);
     }
 }
