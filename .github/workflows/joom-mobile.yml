@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup-and-run:
+  android-test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -21,34 +21,38 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Make gradlew executable
         run: chmod +x joom-mobile/java-framework/mobile-test-joom/gradlew
 
-      - name: Run tests with emulator
+      - name: Set up Node.js (for Appium)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run tests with emulator and Appium
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           target: google_apis
           arch: x86_64
           disable-animations: true
-          emulator-build: 30.0.5
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-audio
           script: |
-            # Установка Node.js и Appium
-            export DEBIAN_FRONTEND=noninteractive
-            curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-            sudo apt-get install -y nodejs
+            echo "Emulator is ready!"
             
+            # Устанавливаем Appium (уже есть Node.js)
             npm install -g appium@next
             appium driver install uiautomator2
             
-            # Запуск Appium
+            # Запускаем Appium в фоне
             appium &
-            APPIUM_PID=$!
+            
+            # Ждём Appium
             sleep 15
             
-            # Запуск тестов
+            # Запускаем тесты
             cd joom-mobile/java-framework/mobile-test-joom
             ./gradlew test
-            
-            # Остановка Appium
-            kill $APPIUM_PID
